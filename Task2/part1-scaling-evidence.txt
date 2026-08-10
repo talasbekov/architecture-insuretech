@@ -1,0 +1,33 @@
+$ kubectl get hpa scaletestapp-hpa-memory
+NAME                      REFERENCE                 TARGETS            MINPODS   MAXPODS   REPLICAS   AGE
+scaletestapp-hpa-memory   Deployment/scaletestapp   memory: 169%/80%   1         10        1          4m43s
+
+$ kubectl get pods -l app=scaletestapp
+NAME                           READY   STATUS    RESTARTS   AGE
+scaletestapp-7ff647597-h85hp   1/1     Running   0          2m32s
+scaletestapp-7ff647597-r5dqs   1/1     Running   0          13s
+scaletestapp-7ff647597-zprvz   1/1     Running   0          13s
+
+$ kubectl describe hpa scaletestapp-hpa-memory
+...
+Metrics:                                                  ( current / target )
+  resource memory on pods  (as a percentage of request):  169% (25988Ki) / 80%
+Min replicas:                                             1
+Max replicas:                                             10
+Deployment pods:                                          1 current / 3 desired
+Conditions:
+  Type            Status  Reason              Message
+  ----            ------  ------              -------
+  AbleToScale     True    SucceededRescale    the HPA controller was able to update the target scale to 3
+  ScalingActive   True    ValidMetricFound    the HPA was able to successfully calculate a replica count from memory resource utilization (percentage of request)
+  ScalingLimited  False   DesiredWithinRange  the desired count is within the acceptable range
+Events:
+  Type     Reason              Age  From                       Message
+  ----     ------              ---  ----                       -------
+  Normal   SuccessfulRescale   13s  horizontal-pod-autoscaler  New size: 3; reason: memory resource utilization (percentage of request) above target
+
+Нагрузка сгенерирована locust (locustfile.py), два headless-запуска подряд:
+locust -f locustfile.py --host=http://192.168.49.2:31087 --headless -u 300 -r 20 --run-time 6m
+locust -f locustfile.py --host=http://192.168.49.2:31087 --headless -u 500 -r 50 --run-time 4m
+
+Вывод: HPA увеличил число реплик Deployment scaletestapp с 1 до 3 в ответ на рост потребления памяти выше 80% от memory request (авто-масштабирование по памяти отработало).
