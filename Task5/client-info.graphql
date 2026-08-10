@@ -1,0 +1,37 @@
+# GraphQL-схема сервиса client-info
+# Заменяет REST-ресурсы /clients/{id}, /clients/{id}/documents, /clients/{id}/relatives
+
+type Client {
+  id: ID!
+  name: String
+  age: Int
+  documents: [Document!]
+  relatives: [Relative!]
+}
+
+type Document {
+  id: ID!
+  type: String
+  number: String
+  issueDate: String
+  expiryDate: String
+}
+
+type Relative {
+  id: ID!
+  relationType: String
+  name: String
+  age: Int
+}
+
+type Query {
+  # Аналог GET /clients/{id}
+  # Клиент сам решает, какие вложенные поля запросить (documents, relatives или ничего),
+  # поэтому один запрос закрывает все три прежних REST-эндпоинта
+  client(id: ID!): Client
+
+  # Точечные запросы оставлены для сценариев, где нужен только один срез данных
+  # без подгрузки остальной карточки клиента
+  documents(clientId: ID!): [Document!]
+  relatives(clientId: ID!): [Relative!]
+}

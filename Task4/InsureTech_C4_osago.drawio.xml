@@ -1,0 +1,102 @@
+<mxfile host="app.diagrams.net" version="24.7.8">
+  <diagram id="t4-diagram" name="InsureTech + OSAGO">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="2100" pageHeight="1400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="t4-person" value="&lt;b&gt;Клиент&lt;/b&gt;&lt;div&gt;[Person]&lt;/div&gt;" style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#083F75;strokeColor=#06315C;fontColor=#ffffff;shape=mxgraph.c4.person2;align=center;resizable=0;" vertex="1" parent="1">
+          <mxGeometry x="510" y="-80" width="200" height="180" as="geometry" />
+        </mxCell>
+
+        <mxCell id="t4-web" value="&lt;b&gt;InsureTech Web&lt;/b&gt;&lt;div&gt;[Container: JavaScript, React]&lt;/div&gt;" style="shape=mxgraph.c4.webBrowserContainer2;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;strokeColor=#118ACD;fillColor=#23A2D9;fontSize=12;fontColor=#ffffff;align=center;resizable=0;" vertex="1" parent="1">
+          <mxGeometry x="490" y="160" width="240" height="160" as="geometry" />
+        </mxCell>
+
+        <mxCell id="t4-payment" value="&lt;b&gt;Платёжный сервис&lt;/b&gt;&lt;div&gt;[Software System]&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;resizable=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="320" width="240" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="t4-core" value="&lt;b&gt;core-app&lt;/b&gt;&lt;div&gt;[Container: Kotlin, SpringBoot]&lt;/div&gt;&lt;div style=&quot;font-size:10px&quot;&gt;Продукты, оформление заявок (в т.ч. ОСАГО), оформленные страховки&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;resizable=0;" vertex="1" parent="1">
+          <mxGeometry x="490" y="430" width="240" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="t4-agg" value="&lt;b&gt;ins-product-aggregator&lt;/b&gt;&lt;div&gt;[Container: Kotlin, SpringBoot]&lt;/div&gt;&lt;div style=&quot;font-size:10px&quot;&gt;Интеграция со страховыми компаниями, единый API продуктов&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;resizable=0;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="600" width="240" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="t4-osago" value="&lt;b&gt;osago-aggregator&lt;/b&gt;&lt;div&gt;[Container: Kotlin, SpringBoot]&lt;/div&gt;&lt;div style=&quot;font-size:10px&quot;&gt;Отправка заявок в СК и опрос решений по ОСАГО&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;resizable=0;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="330" width="240" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="t4-osago-db" value="&lt;b&gt;osago-aggregator-db&lt;/b&gt;&lt;div&gt;[Container: PostgreSQL / Redis]&lt;/div&gt;&lt;div style=&quot;font-size:10px&quot;&gt;Статусы заявок к СК: application_id → insurer_request_id → status/offer. Общее для всех реплик, чтобы любая из них могла продолжить опрос&lt;/div&gt;" style="shape=cylinder3;size=8;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;fillColor=#23A2D9;fontSize=11;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;resizable=0;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="320" width="220" height="140" as="geometry" />
+        </mxCell>
+
+        <mxCell id="t4-client-info" value="&lt;b&gt;client-info&lt;/b&gt;&lt;div&gt;[Container: Kotlin, SpringBoot]&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;resizable=0;" vertex="1" parent="1">
+          <mxGeometry x="910" y="180" width="240" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="t4-partners" value="&lt;b&gt;Системы партнёров&lt;/b&gt;&lt;div&gt;[Software System]&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;resizable=0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="535" width="240" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="t4-core-db" value="&lt;b&gt;core-db&lt;/b&gt;&lt;div&gt;[Container: PostgreSQL]&lt;/div&gt;&lt;div style=&quot;font-size:10px&quot;&gt;+ таблица outbox&lt;/div&gt;" style="shape=cylinder3;size=8;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;fillColor=#23A2D9;fontSize=12;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;resizable=0;" vertex="1" parent="1">
+          <mxGeometry x="490" y="670" width="240" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="t4-outbox-relay" value="&lt;b&gt;Outbox Relay&lt;/b&gt;&lt;div&gt;[Debezium / CDC]&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;fillColor=#60A917;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#3E7B0A;" vertex="1" parent="1">
+          <mxGeometry x="490" y="815" width="240" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="t4-ics" value="&lt;b&gt;ins-comp-settlement&lt;/b&gt;&lt;div&gt;[Container: Kotlin, SpringBoot]&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;resizable=0;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="900" width="240" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="t4-kafka" value="&lt;b&gt;Шина событий&lt;/b&gt;&lt;div&gt;[Apache Kafka]&lt;/div&gt;&lt;div style=&quot;font-size:10px&quot;&gt;topics: products.updated, policy.issued, osago.offer.received, osago.application.completed&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#D79B00;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#996600;" vertex="1" parent="1">
+          <mxGeometry x="490" y="1080" width="810" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="t4-ics-db" value="&lt;b&gt;ins-comp-settlement-db&lt;/b&gt;&lt;div&gt;[Container: PostgreSQL]&lt;/div&gt;" style="shape=cylinder3;size=8;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;fillColor=#23A2D9;fontSize=12;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;resizable=0;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="1220" width="240" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="t4-insurers" value="&lt;b&gt;Системы страховых компаний&lt;/b&gt;&lt;div&gt;[Software System]&lt;/div&gt;&lt;div style=&quot;font-size:10px&quot;&gt;5 сейчас, +5 в планах. У каждой: create-заявка + get-решение (ОСАГО), плюс API тарифов&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;resizable=0;" vertex="1" parent="1">
+          <mxGeometry x="1700" y="450" width="260" height="140" as="geometry" />
+        </mxCell>
+
+        <mxCell id="t4-note" value="Решения по ОСАГО:&#10;• osago-aggregator своего хранилища требует — держит статусы опроса СК по каждой заявке (application_id → insurer_request_id → status/offer), общее для всех реплик, т.к. сервис задеплоен в нескольких экземплярах и любая реплика должна уметь продолжить опрос.&#10;• core-app → osago-aggregator: REST, синхронный вызов только на создание заявки (быстрый ACK), сам список предложений не ждём в этом вызове.&#10;• osago-aggregator → core-app: результаты по каждой СК публикуются в Kafka (osago.offer.received) по мере получения, плюс osago.application.completed по завершении/таймауту — это и даёт 'предложения появляются по мере поступления'.&#10;• core-app → InsureTech Web: WebSocket вместо REST-поллинга, чтобы каждое предложение долетало до экрана клиента сразу, без задержки на цикл опроса.&#10;• Rate Limiting на входе (LoadBalancer/nginx) защищает core-app от одного 'прожорливого' партнёра (см. Task6). Rate Limiting osago-aggregator → СК защищает от превышения лимитов самих страховых компаний.&#10;• Timeout 60с — общий бюджет на СК в osago-aggregator, дальше заявка помечается 'нет ответа от СК' и participant выпадает из результата, не блокируя остальных.&#10;• Retry с backoff — на опросе решения (transient-ошибки СК), не на create-заявку (чтобы не задвоить заявку у страховой).&#10;• Circuit Breaker на каждую СК отдельно — если конкретная СК стабильно недоступна, перестаём слать к ней запросы на время cooldown, не тратя бюджет 60с остальных заявок на заведомо мёртвого партнёра." style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="700" width="620" height="360" as="geometry" />
+        </mxCell>
+
+        <!-- edges unchanged -->
+        <mxCell id="f1" style="endArrow=blockThin;html=1;fontSize=10;strokeColor=#828282;endFill=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="t4-person" target="t4-web"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="f2" value="REST" style="endArrow=blockThin;html=1;fontSize=10;strokeColor=#828282;endFill=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="t4-web" target="t4-core"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="f3" value="TCP" style="endArrow=blockThin;html=1;fontSize=10;strokeColor=#828282;endFill=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="t4-core" target="t4-core-db"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="f4" value="REST" style="endArrow=blockThin;html=1;fontSize=10;strokeColor=#828282;endFill=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="t4-web" target="t4-client-info"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="f5" value="REST" style="endArrow=blockThin;html=1;fontSize=10;strokeColor=#828282;endFill=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="t4-core" target="t4-client-info"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="f6" value="HTTP" style="endArrow=blockThin;html=1;fontSize=10;strokeColor=#828282;endFill=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="t4-core" target="t4-payment"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="f7" value="REST [Rate Limiting]" style="endArrow=blockThin;html=1;fontSize=10;strokeColor=#C0392B;fontColor=#C0392B;endFill=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="t4-partners" target="t4-core"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="f8" value="REST / SOAP / GraphQL" style="endArrow=blockThin;html=1;fontSize=10;strokeColor=#828282;endFill=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="t4-agg" target="t4-insurers"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1470" y="660"/></Array></mxGeometry></mxCell>
+        <mxCell id="f9" value="publish: products.updated" style="endArrow=blockThin;html=1;fontSize=10;strokeColor=#D79B00;fontColor=#996600;dashed=1;endFill=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="t4-agg" target="t4-kafka"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1180" y="1060"/></Array></mxGeometry></mxCell>
+        <mxCell id="f10" value="subscribe: products.updated" style="endArrow=blockThin;html=1;fontSize=10;strokeColor=#D79B00;fontColor=#996600;dashed=1;endFill=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="t4-kafka" target="t4-core"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="610" y="1060"/></Array></mxGeometry></mxCell>
+        <mxCell id="f11" value="subscribe: products.updated" style="endArrow=blockThin;html=1;fontSize=10;strokeColor=#D79B00;fontColor=#996600;dashed=1;endFill=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="t4-kafka" target="t4-ics"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="f12" value="читает outbox" style="endArrow=blockThin;html=1;fontSize=10;strokeColor=#828282;endFill=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="t4-core-db" target="t4-outbox-relay"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="f13" value="publish: policy.issued" style="endArrow=blockThin;html=1;fontSize=10;strokeColor=#D79B00;fontColor=#996600;dashed=1;endFill=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="t4-outbox-relay" target="t4-kafka"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="f14" value="subscribe: policy.issued" style="endArrow=blockThin;html=1;fontSize=10;strokeColor=#D79B00;fontColor=#996600;dashed=1;endFill=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="t4-kafka" target="t4-ics"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1250" y="1170"/></Array></mxGeometry></mxCell>
+        <mxCell id="f15" value="REST / SOAP (раз в месяц)" style="endArrow=blockThin;html=1;fontSize=10;strokeColor=#828282;endFill=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="t4-ics" target="t4-insurers"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1830" y="960"/></Array></mxGeometry></mxCell>
+        <mxCell id="f16" value="TCP" style="endArrow=blockThin;html=1;fontSize=10;strokeColor=#828282;endFill=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="t4-ics" target="t4-ics-db"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- OSAGO-specific edges -->
+        <mxCell id="g1" value="WebSocket (real-time push предложений)" style="endArrow=blockThin;html=1;fontSize=10;strokeColor=#7B1FA2;fontColor=#7B1FA2;endFill=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="t4-core" target="t4-web"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="440" y="330"/></Array></mxGeometry></mxCell>
+        <mxCell id="g2" value="REST: создать заявку [Timeout, Circuit Breaker]" style="endArrow=blockThin;html=1;fontSize=10;strokeColor=#C0392B;fontColor=#C0392B;endFill=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="t4-core" target="t4-osago"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="900" y="390"/></Array></mxGeometry></mxCell>
+        <mxCell id="g3" value="publish: osago.offer.received, osago.application.completed" style="endArrow=blockThin;html=1;fontSize=10;strokeColor=#D79B00;fontColor=#996600;dashed=1;endFill=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="t4-osago" target="t4-kafka"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1210" y="1060"/></Array></mxGeometry></mxCell>
+        <mxCell id="g4" value="subscribe: osago.offer.received, osago.application.completed" style="endArrow=blockThin;html=1;fontSize=10;strokeColor=#D79B00;fontColor=#996600;dashed=1;endFill=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="t4-kafka" target="t4-core"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="640" y="1105"/></Array></mxGeometry></mxCell>
+        <mxCell id="g5" value="TCP" style="endArrow=blockThin;html=1;fontSize=10;strokeColor=#828282;endFill=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="t4-osago" target="t4-osago-db"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="g6" value="REST: заявка [Timeout 60с, Retry, Circuit Breaker]" style="endArrow=blockThin;html=1;fontSize=10;strokeColor=#C0392B;fontColor=#C0392B;endFill=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="t4-osago" target="t4-insurers"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="g7" value="REST: опрос решения [Rate Limiting, Timeout, Retry, Circuit Breaker]" style="endArrow=blockThin;html=1;fontSize=10;strokeColor=#C0392B;fontColor=#C0392B;endFill=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="t4-osago" target="t4-insurers"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1660" y="420"/></Array></mxGeometry></mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
