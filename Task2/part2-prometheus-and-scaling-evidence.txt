@@ -1,0 +1,84 @@
+=== Prometheus targets (kubernetes-pods scrape для scaletestapp) ===
+{
+    "status": "success",
+    "data": {
+        "resultType": "vector",
+        "result": [
+            {
+                "metric": {
+                    "__name__": "http_requests_total",
+                    "app": "scaletestapp",
+                    "instance": "10.244.0.53:8080",
+                    "job": "kubernetes-pods",
+                    "namespace": "default",
+                    "node": "minikube",
+                    "pod": "scaletestapp-7ff647597-h85hp",
+                    "pod_template_hash": "7ff647597"
+                },
+                "value": [
+                    1786350430.82,
+                    "16673"
+                ]
+            },
+            {
+                "metric": {
+                    "__name__": "http_requests_total",
+                    "app": "scaletestapp",
+                    "instance": "10.244.0.54:8080",
+                    "job": "kubernetes-pods",
+                    "namespace": "default",
+                    "node": "minikube",
+                    "pod": "scaletestapp-7ff647597-zprvz",
+                    "pod_template_hash": "7ff647597"
+                },
+                "value": [
+                    1786350430.82,
+                    "0"
+                ]
+            }
+        ]
+    }
+}
+--- targets ---
+kubernetes-api-servers |  | up | https://192.168.49.2:8443/metrics
+kubernetes-nodes |  | unknown | https://192.168.49.2:10250/metrics
+kubernetes-nodes-cadvisor |  | up | https://192.168.49.2:10250/metrics/cadvisor
+kubernetes-pods | scaletestapp-7ff647597-zprvz | up | http://10.244.0.54:8080/metrics
+kubernetes-pods | scaletestapp-7ff647597-h85hp | up | http://10.244.0.53:8080/metrics
+kubernetes-pods | scaletestapp-7ff647597-r5dqs | unknown | http://10.244.0.55:8080/metrics
+kubernetes-service-endpoints |  | up | http://10.244.0.52:8081/metrics
+kubernetes-service-endpoints |  | up | http://10.244.0.48:9153/metrics
+kubernetes-service-endpoints |  | up | http://10.244.0.52:8080/metrics
+prometheus |  | up | http://localhost:9090/metrics
+
+=== HPA по RPS: масштабирование ===
+NAME                   REFERENCE                 TARGETS     MINPODS   MAXPODS   REPLICAS   AGE
+scaletestapp-hpa-rps   Deployment/scaletestapp   33427m/10   1         10        6          55s
+
+NAME                           READY   STATUS    RESTARTS   AGE
+scaletestapp-7ff647597-8lm6l   1/1     Running   0          24s
+scaletestapp-7ff647597-8r4vl   1/1     Running   0          9s
+scaletestapp-7ff647597-h85hp   1/1     Running   0          5m32s
+scaletestapp-7ff647597-l9dwp   1/1     Running   0          24s
+scaletestapp-7ff647597-lsdvm   1/1     Running   0          9s
+scaletestapp-7ff647597-n9ldf   1/1     Running   0          9s
+scaletestapp-7ff647597-r5dqs   1/1     Running   0          3m13s
+scaletestapp-7ff647597-s68jn   1/1     Running   0          24s
+scaletestapp-7ff647597-wxdlr   1/1     Running   0          9s
+scaletestapp-7ff647597-zprvz   1/1     Running   0          3m13s
+
+Max replicas:                          10
+Deployment pods:                       6 current / 10 desired
+Conditions:
+  Type            Status  Reason            Message
+  ----            ------  ------            -------
+  AbleToScale     True    SucceededRescale  the HPA controller was able to update the target scale to 10
+  ScalingActive   True    ValidMetricFound  the HPA was able to successfully calculate a replica count from pods metric http_requests_per_second
+  ScalingLimited  True    TooManyReplicas   the desired replica count is more than the maximum replica count
+Events:
+  Type     Reason                        Age   From                       Message
+  ----     ------                        ----  ----                       -------
+  Warning  FailedGetPodsMetric           40s   horizontal-pod-autoscaler  unable to get metric http_requests_per_second: unable to fetch metrics from custom metrics API: no known available metric versions found
+  Warning  FailedComputeMetricsReplicas  40s   horizontal-pod-autoscaler  invalid metrics (1 invalid out of 1), first error is: failed to get pods metric value: unable to get metric http_requests_per_second: unable to fetch metrics from custom metrics API: no known available metric versions found
+  Normal   SuccessfulRescale             24s   horizontal-pod-autoscaler  New size: 6; reason: pods metric http_requests_per_second above target
+  Normal   SuccessfulRescale             9s    horizontal-pod-autoscaler  New size: 10; reason: pods metric http_requests_per_second above target
